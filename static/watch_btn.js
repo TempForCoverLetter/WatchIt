@@ -9,7 +9,7 @@ document.getElementById("watch-btn").addEventListener("click",async () =>{
         ep = document.getElementById("episode_select").value;
         if(se == "Choose" || ep == "Choose")
         {
-            document.getElementById("watch-video").innerHTML='<div class="alert alert-danger" role="alert">No season or episode have been selected</div>';
+            document.getElementById("watch-video").innerHTML='<div class="center-alert"><div class="alert alert-danger" role="alert">No season or episode have been selected</div></div>';
             document.getElementById("watch-btn").disabled = false;
             return;
         }
