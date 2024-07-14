@@ -185,7 +185,6 @@ import cloudscraper
 @app.route("/get_torrent/<q>")
 @app.route("/get_torrent/<q>/<magnet>")
 def get_torrent(q, magnet=None):
-    print("q,magnet",q,magnet)
     if (magnet):
         magnet_link = search_torrent_magnet_galaxy(q)
         if (magnet_link == ""):
