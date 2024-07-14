@@ -56,9 +56,9 @@ document.getElementById("watch-btn").addEventListener("click",async () =>{
     {
         imdb = document.getElementById("watch-btn").dataset.imdbid;
     }
-    if(Math.random() < 0.68)
+    if(Math.random() < 0.7)
     {
-        document.getElementById("watch-video").innerHTML = '<iframe src="https://strm-trnt.onrender.com/?imdb_id='+imdb+'&torrent='+torrentId+'" frameborder="0" allowfullscreen webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"/>';
+        document.getElementById("watch-video").innerHTML = '<iframe src="https://streamtorrent.onrender.com/?imdb_id='+imdb+'&torrent='+torrentId+'" frameborder="0" allowfullscreen webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"/>';
     }
     else{
         document.getElementById("watch-video").innerHTML = '<iframe src="https://dawn-butterfly-7836.fly.dev/?imdb_id='+imdb+'&torrent='+torrentId+'" frameborder="0" allowfullscreen webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"/>';
