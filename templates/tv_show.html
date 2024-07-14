@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="background-poster" style="background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.3) 5%, rgba(0,0,0,1)),url({{backdrop_url}});">
+        <div class="big_poster_wrapper">
+            <img width="100%" src= "{{ poster_url if not poster_url.endswith('None') else 'https://via.placeholder.com/300x450.png?text='+ title}}">
+            <div class="rating {{ 'good' if rating > 65 else ('meh' if rating > 50 else 'bad') }}" style ="background: conic-gradient({{ '#27ae60' if rating > 65 else ('#f1c40f' if rating > 50 else '##e74c3c') }} {{ rating }}%, transparent 0 100%)"><span>{{ rating }}%</span></div>
+        </div>
+        <h1>{{ title }}</h1>
+        <h5>{{Original_Title}}: {{ original_title }}</h5>
+        <h5>{{Categories}}: {{ generes_list }}</h5>
+        <h5>{{Number_Of_Seasons}}: {{ number_of_seasons }}</h5>
+        <h5>{{Number_Of_Episodes}}: {{ number_of_episodes }}</h5>
+        <h5>{{Episode_Time}}: {{ runtime }} {{Minutes}}</h5>
+        <h5>{{First_Air_Date}}: {{ release_date }}</h5>
+        <h3>{{ overview }}</h3>
+        
+        <div class="center-watch">
+            <div class="watch-buttons">
+                <select class="form-select btn btn-dark" id="season_select" onchange="changedSeason()">
+                    <option value="Choose" selected>{{Choose_Season}}</option>
+                    {%for i in range(seasons_name|length)%}
+                        <option value="{{ seasons_nunmber[i] }}">{{ seasons_name[i] }}</option>
+                    {%endfor%}
+                </select>
+                <select class="form-select btn btn-dark"  id="episode_select">
+                    <option value="Choose" selected>{{Choose_Episode}}</option>
+                </select>
+                <button type="button" id="watch-btn" class="btn btn-dark" data-imdbid="">{{Play_Video}}</button>
+            </div>
+            <div class="spinner-border" role="status" id="loader" hidden>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div id="watch-video"></div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block more_js %}
+<script>
+    //{#var seasons_id = [{{ ', '.join(seasons_id) }}];#}
+    var episode_per_season = [{{ ', '.join(episode_per_season) }}];
+    function changedSeason() {
+        let season_num = parseInt(document.getElementById("season_select").value);
+        let episode_select = document.getElementById("episode_select");
+        episode_select.innerHTML = '<option value="Choose" selected>{{Choose_Episode}}</option>';
+        for (var i = 1; i<=episode_per_season[season_num-1]; i++){
+            episode_select.options[episode_select.options.length] = new Option("" + i, "" + i);
+        }
+    }
+</script>
+<script src="{{ url_for('static', filename='watch_btn.js') }}"></script>
+{% endblock %}

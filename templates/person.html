@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="background-poster" style="background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.3) 5%, rgba(0,0,0,1)),url({{backdrop_url}});">
+        <div class="big_poster_wrapper">
+            <img width="100%" src= "{{ poster_url if not poster_url.endswith('None') else 'https://via.placeholder.com/300x450.png?text='+ name}}">
+            <div class="rating good" style ="background: conic-gradient(#27ae60 100%, transparent 0 100%)"><span>{{ popularity }}</span></div>
+        </div>
+        <h1>{{ name }}</h1>
+        <h5>{{Alson_Known_As}}: {{ also_known_as }}</h5>
+        <h5>{{Birth_Date}}: {{ birthday + ('-' + deathday if(deathday) else "")}}</h5>
+        <h5>{{Place_Of_Birth}}: {{ place_of_birth }}</h5>
+        <h5>{{Known_For_Department}}: {{ known_for_department }}</h5>
+        <h5>{{Popularity}}: {{ popularity }}</h5>
+        <h3>{{ biography }}</h3>
+
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                {% for id,image_url,rating,title,overview in known_for_items -%}
+                    <div class="swiper-slide">
+                        <a href="{{ id }}">
+                            <div class="poster_wrapper">
+                                <img src= "{{ image_url if not image_url.endswith('None') else 'https://via.placeholder.com/200x300.png?text='+ title}}" width="100%">
+                                <div class="rating {{ 'good' if rating > 65 else ('meh' if rating > 50 else 'bad') }}" style ="background: conic-gradient({{ '#27ae60' if rating > 65 else ('#f1c40f' if rating > 50 else '##e74c3c') }} {{ rating }}%, transparent 0 100%)"><span>{{ rating }}%</span></div>
+                                <div class="overlay">
+                                    <div class="text-overlay">
+                                        <h4>{{ title }}</h4>
+                                        <p>{{ overview }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block more_js %}
+<script src="{{ url_for('static', filename='main_page_swiper.js') }}"></script>
+{% endblock %}

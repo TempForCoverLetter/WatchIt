@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}All the Movies and TV Shows{% endblock %}
+
+{% block content %}
+{% for title,category_items in content -%}
+    <h1>{{ title }}</h1>
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            {% for id,image_url,rating,title,overview in category_items -%}
+                <div class="swiper-slide">
+                    <a href="{{ id }}">
+                        <div class="poster_wrapper">
+                            <img src= "{{ image_url }}" width="100%">
+                            <div class="rating {{ 'good' if rating > 65 else ('meh' if rating > 50 else 'bad') }}" style ="background: conic-gradient({{ '#27ae60' if rating > 65 else ('#f1c40f' if rating > 50 else '##e74c3c') }} {{ rating }}%, transparent 0 100%)"><span>{{ rating }}%</span></div>
+                            <div class="overlay">
+                                <div class="text-overlay">
+                                    <h4>{{ title }}</h4>
+                                    <p>{{ overview }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+    </div>
+{% endfor %}
+{% endblock %}
+
+{% block more_js %}
+<script src="{{ url_for('static', filename='main_page_swiper.js') }}"></script>
+{% endblock %}

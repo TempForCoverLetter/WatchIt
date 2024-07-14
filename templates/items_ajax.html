@@ -1,0 +1,16 @@
+{% for id,image_url,rating,title,overview in items -%}
+                <div class="grid-slide">
+                    <a href="{{ id }}">
+                        <div class="poster_wrapper">
+                            <img src= "{{ image_url }}" width="100%">
+                            <div class="rating {{ 'good' if rating > 65 else ('meh' if rating > 50 else 'bad') }}" style ="background: conic-gradient({{ '#27ae60' if rating > 65 else ('#f1c40f' if rating > 50 else '##e74c3c') }} {{ rating }}%, transparent 0 100%)"><span>{{ rating }}%</span></div>
+                            <div class="overlay">
+                                <div class="text-overlay">
+                                    <h4>{{ title }}</h4>
+                                    <p>{{ overview }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+{% endfor %}

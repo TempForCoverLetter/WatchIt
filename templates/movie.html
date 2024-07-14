@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="background-poster" style="background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.3) 5%, rgba(0,0,0,1)),url({{backdrop_url}});">
+        <div class="big_poster_wrapper">
+            <img width="100%" src= "{{ poster_url if not poster_url.endswith('None') else 'https://via.placeholder.com/300x450.png?text='+ title}}">
+            <div class="rating {{ 'good' if rating > 65 else ('meh' if rating > 50 else 'bad') }}" style ="background: conic-gradient({{ '#27ae60' if rating > 65 else ('#f1c40f' if rating > 50 else '##e74c3c') }} {{ rating }}%, transparent 0 100%)"><span>{{ rating }}%</span></div>
+        </div>
+        <h1>{{ title }}</h1>
+        <h5>{{Original_Title}}: {{ original_title }}</h5>
+        <h5>{{Categories}}: {{ generes_list }}</h5>
+        <h5>{{Time}}: {{ runtime }} {{Minutes}}</h5>
+        <h5>{{Release_Date}}: {{ release_date }}</h5>
+        <h3>{{ overview }}</h3>
+        <div class="center-watch">
+            <div class="watch-buttons">
+                <button type="button" id="watch-btn" class="btn btn-dark" data-imdbid="{{ imdbid }}">{{Play_Video}}</button>
+            </div>
+            <div class="spinner-border" role="status" id="loader" hidden>
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div id="watch-video"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block more_js %}
+<script src="{{ url_for('static', filename='watch_btn.js') }}"></script>
+{% endblock %}

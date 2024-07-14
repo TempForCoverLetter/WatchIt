@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}All the Movies and TV Shows{% endblock %}
+
+{% block content %}
+<div class="grid-wrapper">
+{% for id,image_url,rating,title,overview in items -%}
+                <div class="grid-slide">
+                    <a href="{{ id }}">
+                        <div class="poster_wrapper">
+                            <img src= "{{ image_url if not image_url.endswith('None') else 'https://via.placeholder.com/500x750.png?text='+ title}}" width="100%">
+                            <div class="rating {{ 'good' if ('Person' in id or rating > 65) else ('meh' if rating > 50 else 'bad') }}" style ="background: conic-gradient({{ '#27ae60' if rating > 65 else ('#f1c40f' if rating > 50 else '##e74c3c') }} {{ 100 if ('Person' in id) else rating }}%, transparent 0 100%)"><span>{{ rating }}</span></div>
+                            <div class="overlay">
+                                <div class="text-overlay">
+                                    <h4>{{ title }}</h4>
+                                    <p>{{ overview }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+{% endfor %}
+</div>
+<div class="spinner-center" id="loader" hidden>
+    <div class="spinner-border" role="status" style="top: 10%;position: absolute;">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block more_js %}
+<script src="{{ url_for('static', filename='load_more.js') }}"></script>
+{% endblock %}

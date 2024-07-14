@@ -1,0 +1,254 @@
+/* all site */
+header {
+    height: 68px;
+}
+h1{
+    padding: 30px 20px 0;
+    margin: 0;
+}
+h5{
+  padding: 0 20px;
+}
+h3{
+  padding: 0 20px;
+}
+html {
+  height: 100%;
+}
+body {
+  background-color: #000;
+  /*font-family: 'Bebas Neue', cursive;*/
+  height: 100%;
+}
+#content {
+  height: 80%;
+}
+footer {
+  z-index: 3;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: black;
+}
+.navbar {
+  background: black;
+}
+.mr-sm-2, .mx-sm-2 {
+  margin-left: 0.5rem!important; /* Added for rtl support */
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+/* movie screen size */
+iframe {
+  margin: 15px;
+}
+@media screen and (min-width: 600px) {
+  iframe{
+    width: 560px;
+    height: 315px;
+  }
+}
+@media screen and (max-width: 600px) {
+  iframe{
+    width: 90%;
+    height: 200px;
+  }
+}
+/* posterbackground */
+.background-poster {
+  height: 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+@media screen and (min-width: 600px) {
+  .background-poster {
+    background-position: center;
+    background-size: cover;
+  }
+}
+/* Movies/TV Shows page */
+@media screen and (min-width: 600px) {
+  .grid-wrapper{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .grid-wrapper{
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+}
+.grid-slide {
+  padding: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+.spinner-center{
+  position: relative;
+  text-align: center;
+  padding: 50px;
+}
+/* swiper */
+.swiper {
+    width: 100%;
+    padding: 10px 0 30px;;
+}
+.swiper-slide {
+    width: 200px
+}
+/* in movie poster */
+@media screen and (max-width: 600px) {
+.big_poster_wrapper {
+  margin: auto;
+  width: 80%;
+}
+}
+@media screen and (min-width: 600px) {
+  .big_poster_wrapper {
+    margin: 35px 20px 0;
+    float: left;
+  }
+}
+/* text overlay in poster */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+    z-index: 3;
+}
+.poster_wrapper:hover .overlay {
+    opacity: 1;
+}
+.text-overlay {
+    overflow:hidden;
+    padding: 0 8px 4px;
+    color: white;
+    position: absolute;
+    top: 40%;
+    height: 55%;
+    width: 100%;
+  }
+/* watch buttons */
+.center-watch{
+  text-align: center;
+  padding-bottom: 15px;
+}
+.watch-buttons {
+  margin: 15px;
+}
+/* circle score in poster */
+:root {
+    --rating-size: 50px;
+    --bar-size: 5px;
+    --background-color: #222;
+    --rating-color-default: #444;
+    --rating-color-background: #444;
+    --rating-color-good: #27ae60;
+    --rating-color-meh: #f1c40f;
+    --rating-color-bad: #e74c3c;
+}
+/* Rating item */
+.big_poster_wrapper, .poster_wrapper {
+    position: relative;
+}
+.rating {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    overflow: hidden;
+    
+    background: var(--rating-color-default);
+    color: var(--rating-color-default);
+    width: var(--rating-size);
+    height: var(--rating-size);
+  
+    /* Basic style for the text */
+    font-size: calc(var(--rating-size) / 3);
+    line-height: 1;
+  }
+  
+  /* Rating circle content */
+  .rating span {
+    position: relative;
+    display: flex;
+    font-weight: bold;
+    z-index: 2;
+  }
+  
+  .rating span small {
+    font-size: 0.5em;
+    font-weight: 900;
+    align-self: center;
+  }
+  
+  /* Bar mask, creates an inner circle with the same color as thee background */
+  .rating::after {
+    content: "";
+    position: absolute;
+    top: var(--bar-size);
+    right: var(--bar-size);
+    bottom: var(--bar-size);
+    left: var(--bar-size);
+    background: var(--background-color);
+    border-radius: inherit;
+    z-index: 1;
+  }
+  
+  /* Bar background */
+  .rating::before {
+    content: "";
+    position: absolute;
+    top: var(--bar-size);
+    right: var(--bar-size);
+    bottom: var(--bar-size);
+    left: var(--bar-size);
+    border-radius: inherit;
+    box-shadow: 0 0 0 1rem var(--rating-color-background);
+    z-index: -1;
+  }
+  
+  /* Classes to give different colors to ratings, based on their score */
+  .rating.good {
+    background: var(--rating-color-good);
+    color: var(--rating-color-good);
+  }
+  
+  .rating.meh {
+    background: var(--rating-color-meh);
+    color: var(--rating-color-meh);
+  }
+  
+  .rating.bad {
+    background: var(--rating-color-bad);
+    color: var(--rating-color-bad);
+  }
+
+  /* loader */
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

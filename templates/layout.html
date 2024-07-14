@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Font from google
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+     -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='logo.png') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>{% block title %}{% endblock %} - Nemix</title>
+    {% endblock %}
+  </head>
+  <body class="text-white" {% if is_rtl %}style = "text-align: right!important; direction: rtl !important;"{% endif %}>
+    <header>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{{ url_for('main_page') }}">
+          <img src="{{ url_for('static', filename='logo.png') }}" width="40" height="40" class="d-inline-block align-top" alt="Logo of Nemix">
+          <h1 style="color:red; padding: 0!important;">Nemix</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item{% if main_active %} active{% endif %}">
+              <a class="nav-link" href="{{ url_for('main_page') }}">{{Home}} {% if main_active %}<span class="sr-only">(current)</span>{% endif %}</a>
+            </li>
+            <li class="nav-item{% if movies_active %} active{% endif %}">
+              <a class="nav-link" href="{{ url_for('movies_page') }}">{{Movies}} {% if movies_active %}<span class="sr-only">(current)</span>{% endif %}</a>
+            </li>
+            <li class="nav-item{% if tv_shows_active %} active{% endif %}">
+              <a class="nav-link" href="{{ url_for('tv_shows_page') }}">{{TV_Shows}} {% if tv_shows_active %}<span class="sr-only">(current)</span>{% endif %}</a>
+            </li>
+            <li class="nav-item{% if persons_active %} active{% endif %}">
+              <a class="nav-link" href="{{ url_for('persons_page') }}">{{Actors}} {% if persons_active %}<span class="sr-only">(current)</span>{% endif %}</a>
+            </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="{{Search}}" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" id="search-btn">{{Search}}</button>
+          </div>
+        </div>
+      </nav>
+   </header>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <footer id="footer" dir = "ltr">
+      {% block footer %}
+      &copy; Copyright {{ now.year }} by TheMovieGuy.
+      {% endblock %}
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='search_btn.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
+    {% block more_js %}{% endblock %}
+  </body>
+</html>
