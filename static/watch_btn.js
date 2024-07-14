@@ -39,7 +39,7 @@ document.getElementById("watch-btn").addEventListener("click",async () =>{
     let torrentId = await response.text();
     if(torrentId == "")
     {
-        document.getElementById("watch-video").innerHTML='<div class="alert alert-danger" role="alert">The providers have no link</div>';
+        document.getElementById("watch-video").innerHTML='<div class="center-alert"><div class="alert alert-danger" role="alert">The providers have no link</div></div>';
         document.getElementById("loader").hidden = true;
         document.getElementById("watch-btn").disabled = false;
         return;
