@@ -169,7 +169,7 @@ def person_page(id):
         TV_Shows=dict_translate[lang]['TV Shows'],
         Actors=dict_translate[lang]['Actors'],
         Search=dict_translate[lang]['Search'],
-        Alson_Known_As=dict_translate[lang]['Also Known As'],
+        Also_Known_As=dict_translate[lang]['Also Known As'],
         Birth_Date=dict_translate[lang]['Birth Date'],
         Place_Of_Birth=dict_translate[lang]['Place Of Birth'],
         Known_For_Department=dict_translate[lang]['Known For Department'],
